@@ -32,6 +32,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
  * Servlet implementation class Image
  */
 @WebServlet(urlPatterns = {
+    //"/Upload",
     "/Image",
     "/Image/*",
     "/Thumb/*",
@@ -57,6 +58,7 @@ public class Image extends HttpServlet {
         CommandsMap.put("Image", 1);
         CommandsMap.put("Images", 2);
         CommandsMap.put("Thumb", 3);
+        //CommandsMap.put("Upload", 4);
 
     }
 
@@ -89,6 +91,9 @@ public class Image extends HttpServlet {
             case 3:
                 DisplayImage(Convertors.DISPLAY_THUMB,args[2],  response);
                 break;
+            //case 4:
+               // RequestDispatcher rd=request.getRequestDispatcher("/upload.jsp");
+                //rd.forward(request,response);
             default:
                 error("Bad Operator", response);
         }
@@ -98,7 +103,7 @@ public class Image extends HttpServlet {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
         java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
-        RequestDispatcher rd = request.getRequestDispatcher("/UsersPics.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/usersPics.jsp");
         request.setAttribute("Pics", lsPics);
         rd.forward(request, response);
 
