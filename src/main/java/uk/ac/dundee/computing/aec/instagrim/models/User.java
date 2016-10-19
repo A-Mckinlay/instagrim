@@ -74,14 +74,27 @@ public class User {
                 if (StoredPass.compareTo(EncodedPassword) == 0)
                     return true;
             }
-        }
-   
-    
+        } 
     return false;  
     }
+    
        public void setCluster(Cluster cluster) {
         this.cluster = cluster;
     }
-
-    
+       
+    public String getFirstName(String username)
+    {
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select first_name from userprofiles where login=?");
+        ResultSet rs = null;
+        String fName = "";
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind(username));
+        for(Row row : rs){
+             fName = row.getString("first_name");
+        }
+        return fName;              
+    }
+       
+       
 }

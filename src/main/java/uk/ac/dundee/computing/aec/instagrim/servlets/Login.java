@@ -58,13 +58,13 @@ public class Login extends HttpServlet {
         System.out.println("Session in servlet "+session);
         if (isValid){
             LoggedIn lg= new LoggedIn();
-            lg.setLogedin();
+            lg.setLoggedin();
             lg.setUsername(username);
             //request.setAttribute("LoggedIn", lg);
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
-            RequestDispatcher rd=request.getRequestDispatcher("userProfile.jsp");
+            RequestDispatcher rd=request.getRequestDispatcher("/Instagrim/UserProfile");
 	    rd.forward(request,response);
             
         }else{

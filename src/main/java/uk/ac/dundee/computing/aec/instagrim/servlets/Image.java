@@ -63,7 +63,6 @@ public class Image extends HttpServlet {
     }
 
     public void init(ServletConfig config) throws ServletException {
-        // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
     }
 
@@ -142,7 +141,7 @@ public class Image extends HttpServlet {
             HttpSession session=request.getSession();
             LoggedIn lg= (LoggedIn)session.getAttribute("LoggedIn");
             String username="majed";
-            if (lg.getlogedin()){
+            if (lg.getloggedin()){
                 username=lg.getUsername();
             }
             if (i > 0) {
