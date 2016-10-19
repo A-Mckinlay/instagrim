@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %> 
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,19 +14,21 @@
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
+        <%LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");%>
         <h1>Instagrim</h1>
-        <h2>Your world in Black and White</h2>#
-        <h3>Welcome back</h3>
+        <h2>Your world in Black and White</h2>
+        <h3>Welcome back <%=lg.getUsername()%></h3>
         <nav>
             <ul>
                 <li class="nav"><a href="/Instagrim/Upload">Upload</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                <li><form method="POST"  action="Logout"><input type="submit" value="Logout"></form></li>
+                <li><form method="POST"  action="Logout"><input type="submit" s value="Logout"></form></li>
             </ul>
         </nav>
                 
         <article>
             <h1>Your Profile</h1>
+            <%LoggedIn lg = (LoggedIn) session.getAttr
             
         </article>
     </body>
