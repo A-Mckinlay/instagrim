@@ -17,33 +17,25 @@
     <body>
         <header>
             <h1>InstaGrim ! </h1>
-            <h2>Your world in Black and White</h2>
+            <h2>Your world in Black and White</h2>           
         </header>
         <nav>
             <ul>
-
-               
-                <li><a href="upload.jsp">Upload</a></li>
-                    <%
-                        
+                <li><a href="/Instagrim/Upload">Upload</a></li>
+                    <%        
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                         if (lg != null) {
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-               <form method="POST"  action="Logout">
-                <input type="submit" value="Logout"> 
-                </form>
+                <li><form method="POST"  action="Logout"><input type="submit" value="Logout"></form></li>
                     <%}
                             }else{
                                 %>
-                 <li><a href="/Instagrim/Register">Register</a></li>
+                <li><a href="/Instagrim/Register">Register</a></li>
                 <li><a href="/Instagrim/Login">Login</a></li>
-                <%
-                                        
-                            
+                <%      
                     }%>
             </ul>
         </nav>
