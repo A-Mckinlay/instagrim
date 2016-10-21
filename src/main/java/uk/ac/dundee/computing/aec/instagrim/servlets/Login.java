@@ -60,15 +60,20 @@ public class Login extends HttpServlet {
             LoggedIn lg= new LoggedIn();
             lg.setLoggedin();
             lg.setUsername(username);
-            //request.setAttribute("LoggedIn", lg);
+            lg.setFirstName(us.getFirstName(username));
+            lg.setLastName(us.getLastName(username));
+            lg.setEmail(us.getEmail(username));
+      
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
-            RequestDispatcher rd=request.getRequestDispatcher("/Instagrim/UserProfile");
-	    rd.forward(request,response);
+            response.sendRedirect("/Instagrim/UserProfile");
+//            RequestDispatcher rd=request.getRequestDispatcher("/UserProfile");
+//            rd.forward(request,response);
+
             
         }else{
-            response.sendRedirect("/Instagrim/login.jsp");
+            response.sendRedirect("/Instagrim/Login");
         }
         
     }

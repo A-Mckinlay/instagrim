@@ -14,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
-        <%LoggedIn lg = (LoggedIn) request.getAttribute("LoggedIn");%>
+        <%LoggedIn lg = (LoggedIn) request.getSession().getAttribute("LoggedIn");%>
         <h1>Instagrim</h1>
         <h2>Your world in Black and White</h2>
         <h3>Welcome back <%=lg.getUsername()%></h3>
@@ -28,11 +28,20 @@
                 
         <article>
             <h1>Your Profile</h1>
-            <ul>
-                <li>First Name: <%=//Get String from servlet%></li>
-            </ul>
-            
-            
+            <table>
+                <tr>
+                    <td>First Name</td>
+                    <td><%=lg.getFirstName()%></td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td><%=lg.getLastName()%></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><%=lg.getEmail()%></td>
+                </tr>
+            </table>
         </article>
     </body>
 </html>

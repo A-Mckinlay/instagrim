@@ -8,6 +8,7 @@ package uk.ac.dundee.computing.aec.instagrim.servlets;
 import com.datastax.driver.core.Cluster;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +24,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  *
  * @author allan
  */
-@WebServlet(name = "userProfile", urlPatterns = {"/userProfile"})
+@WebServlet(name = "userProfile", urlPatterns = {"/UserProfile"})
 public class UserProfile extends HttpServlet {
 
     /**
@@ -42,15 +43,11 @@ public class UserProfile extends HttpServlet {
         cluster = CassandraHosts.getCluster();
     }
     
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        User us = new User();
-        us.setCluster(cluster);
-        HttpSession session = request.getSession();
-        LoggedIn lg =  (LoggedIn) session.getAttribute("LoggedIn"); //How do I get the username of the current session
-        String username = lg.getUsername();
-        String fName = us.getFirstName(username);   //Get this string to the userProfile.jsp
+        RequestDispatcher rd=request.getRequestDispatcher("/userProfile.jsp");
+	rd.forward(request,response);  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

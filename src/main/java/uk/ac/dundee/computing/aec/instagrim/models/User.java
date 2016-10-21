@@ -95,6 +95,32 @@ public class User {
         }
         return fName;              
     }
-       
-       
+    
+    public String getLastName(String username)
+    {
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select last_name from userprofiles where login=?");
+        ResultSet rs = null;
+        String lName = "";
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind(username));
+        for(Row row : rs){
+             lName = row.getString("last_name");
+        }
+        return lName;
+    }
+    
+    public String getEmail(String username)
+    {
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select email from userprofiles where login=?");
+        ResultSet rs = null;
+        String email = "";
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind(username));
+        for(Row row : rs){
+            email = row.getString("email");
+        }
+        return email;
+    }
 }
