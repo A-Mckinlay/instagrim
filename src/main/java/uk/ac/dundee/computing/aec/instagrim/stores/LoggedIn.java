@@ -16,6 +16,7 @@ public class LoggedIn {
     String firstName=null;
     String lastName=null;
     String email=null;
+    java.util.UUID profPicID;
     public void LoggedIn(){
         
     }
@@ -62,5 +63,13 @@ public class LoggedIn {
     public String getEmail()
     {
         return email;
+    }
+    public void setProfPicID(java.util.UUID profPicID)
+    {
+        this.profPicID = profPicID;
+    }
+    public java.util.UUID getProfPicID()
+    {
+        return profPicID;
     }
 }

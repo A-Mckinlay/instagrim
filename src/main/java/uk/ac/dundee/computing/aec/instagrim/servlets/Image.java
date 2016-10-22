@@ -33,6 +33,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
  */
 @WebServlet(name= "Image", urlPatterns = {
     "/Upload",
+    "/ProfilePic",
     "/Image",
     "/Image/*",
     "/Thumb/*",
@@ -132,10 +133,9 @@ public class Image extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
-
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
-            
+            boolean profPic = false;
             InputStream is = request.getPart(part.getName()).getInputStream();
             int i = is.available();
             HttpSession session=request.getSession();
@@ -150,12 +150,23 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username);
-
+                if("/Instagrim/ProfilePic".equals(request.getRequestURI()))
+                {
+                    profPic = true;
+                }                
+                tm.insertPic(b, type, filename, username, profPic); 
                 is.close();
             }
-            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
-             rd.forward(request, response);
+            if(profPic)
+            {
+                RequestDispatcher rd = request.getRequestDispatcher("/UserProfile");
+                rd.forward(request, response);
+            }
+            else
+            {
+                RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
+                rd.forward(request, response);
+            }  
         }
 
     }
@@ -164,7 +175,7 @@ public class Image extends HttpServlet {
 
         PrintWriter out = null;
         out = new PrintWriter(response.getOutputStream());
-        out.println("<h1>You have a na error in your input</h1>");
+        out.println("<h1>You have a an error in your input</h1>");
         out.println("<h2>" + mess + "</h2>");
         out.close();
         return;

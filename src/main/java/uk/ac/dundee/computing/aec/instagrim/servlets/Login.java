@@ -18,8 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
+import uk.ac.dundee.computing.aec.instagrim.models.PicModel;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
+import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
 
 /**
  *
@@ -63,10 +65,23 @@ public class Login extends HttpServlet {
             lg.setFirstName(us.getFirstName(username));
             lg.setLastName(us.getLastName(username));
             lg.setEmail(us.getEmail(username));
-      
+            lg.setProfPicID(us.getProfilePicID(username));
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
+            
+            PicModel tm = new PicModel();
+            tm.setCluster(cluster);
+            System.out.println("Profile Pic ID IS:" + us.getProfilePicID(username));
+            Pic profilePic = tm.getPic(0,us.getProfilePicID(username));
+            if(profilePic == null)
+            {
+                System.out.println("PROFILE PIC IS NULL");
+            }
+
+            session.setAttribute("ProfilePic", profilePic);
+            
+            
             response.sendRedirect("/Instagrim/UserProfile");
 //            RequestDispatcher rd=request.getRequestDispatcher("/UserProfile");
 //            rd.forward(request,response);

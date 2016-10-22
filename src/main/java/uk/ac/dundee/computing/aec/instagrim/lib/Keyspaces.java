@@ -45,7 +45,7 @@ public final class Keyspaces {
                     + "login text PRIMARY KEY,\n"
                     + "password text,\n"
                     + "first_name text,\n"
-                    + "profile_pic blob,\n"
+                    + "profile_pic uuid,\n"
                     + "last_name text,\n"
                     + "email text,\n"
                     + "addresses  map<text, frozen <address>>\n"

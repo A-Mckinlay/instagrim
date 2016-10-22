@@ -123,4 +123,18 @@ public class User {
         }
         return email;
     }
+    
+    public java.util.UUID getProfilePicID(String username)
+    {
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select profile_pic from userprofiles where login=?");
+        ResultSet rs = null;
+        java.util.UUID profilePicID = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind(username));
+        for(Row row : rs){
+            profilePicID = row.getUUID("profile_pic");
+        }
+        return profilePicID;
+    }
 }

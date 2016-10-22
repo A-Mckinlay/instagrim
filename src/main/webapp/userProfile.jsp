@@ -42,6 +42,35 @@
                     <td><%=lg.getEmail()%></td>
                 </tr>
             </table>
+                
+            <h2>Profile Picture</h2>
+            <%
+                Pic profPic = (Pic) request.getSession().getAttribute("ProfilePic");
+                if(profPic == null){
+            %>
+            <p>No Profile Picture Found</p>
+            <%
+                }
+                else
+                {
+            %>
+                <%// <a href="/Instagrim/Image/<%=profPic.getSUUID()%>"<%// ><img src="/Instagrim/Thumb/<%=profPic.getSUUID()%><%//"></a><br/> --!%>
+            <%
+                }
+            %>
+
+            <table>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+            <h3>Upload New Profile Picture</h3>
+            <form method="POST" enctype="multipart/form-data" action="ProfilePic">
+                File to upload: <input type="file" name="upfile"><br/>
+
+                <br/>
+                <input type="submit" value="Press"> to upload the file!
+            </form>
         </article>
     </body>
 </html>
