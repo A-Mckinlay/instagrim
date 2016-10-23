@@ -16,7 +16,7 @@ public class LoggedIn {
     String firstName=null;
     String lastName=null;
     String email=null;
-    java.util.UUID profPicID;
+    java.util.UUID profPicID=null;
     public void LoggedIn(){
         
     }

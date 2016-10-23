@@ -71,10 +71,8 @@ public class PicModel {
             ByteBuffer processedbuf=ByteBuffer.wrap(processedb);
             int processedlength=processedb.length;
             Session session = cluster.connect("instagrim");
-            System.out.println("Profile Pic Var is:" + profilePic);
             if(profilePic)
             {
-                System.out.println("PIC UUID TO BE STORED:" + picid);
                 PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
                 PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)");
                 PreparedStatement psSetProfilePic = session.prepare("update userprofiles " + "set profile_pic=?" + " where login=?");
@@ -168,7 +166,6 @@ public class PicModel {
             for (Row row : rs) {
                 Pic pic = new Pic();
                 java.util.UUID UUID = row.getUUID("picid");
-                System.out.println("UUID" + UUID.toString());
                 pic.setUUID(UUID);
                 Pics.add(pic);
 

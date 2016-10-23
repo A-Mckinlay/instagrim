@@ -55,36 +55,38 @@ public class UserProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-             
-        PicModel tm = new PicModel();
-        User us=new User();
-        LoggedIn lg = (LoggedIn) request.getSession().getAttribute("LoggedIn");
-        us.setCluster(cluster);
-        tm.setCluster(cluster);
+      //  LoggedIn lg = (LoggedIn) request.getSession().getAttribute("LoggedIn");
+      //  User us = (User) request.getSession().getAttribute(name);
+       // if(lg.getProfPicID() != )
         
-        Pic p = tm.getPic(0,us.getProfilePicID(lg.getUsername()));
-        
-        OutputStream out = response.getOutputStream();
-
-        response.setContentType(p.getType());
-        response.setContentLength(p.getLength());
-        //out.write(Image);
-        InputStream is = new ByteArrayInputStream(p.getBytes());
-        BufferedInputStream input = new BufferedInputStream(is);
-        byte[] buffer = new byte[8192];
-        for (int length = 0; (length = input.read(buffer)) > 0;) {
-            out.write(buffer, 0, length);
+        /*    
+        java.util.UUID profilePicID = us.getProfilePicID(username);
+        if(profilePicID != null)
+        {   
+            lg.setProfPicID(profilePicID);
         }
-        out.close();
+
+        session.setAttribute("LoggedIn", lg);
+        System.out.println("Session in servlet "+session);
+
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+
+        if(profilePicID != null)
+        {
+            Pic profilePic = tm.getPic(0,profilePicID);
+            profilePic.setUUID(profilePicID);
+            System.out.println("profilePic UUID at login = " + profilePic.getUUID());
+            session.setAttribute("ProfilePic", profilePic);
+        }          
+            response.sendRedirect("/Instagrim/UserProfile");*/
+        processRequest(request, response);
         }
     
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("PRINTING FROM USERPROFILE SERVLET DOGET METHOD");
-        System.out.println("request:" + request);
-        System.out.println("response:" + response);
         processRequest(request, response);
     }
     

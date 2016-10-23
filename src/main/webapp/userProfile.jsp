@@ -45,18 +45,18 @@
                 
             <h2>Profile Picture</h2>
             <%
-                Pic profPic = (Pic) request.getSession().getAttribute("ProfilePic");
-                if(profPic == null){
+            Pic profPic = (Pic) request.getSession().getAttribute("ProfilePic");
+            if(profPic.getUUID() == null){
             %>
-            <p>No Profile Picture Found</p>
+                <p>No Profile Picture Found</p>
             <%
-                }
-                else
-                {
+            }
+            else
+            {
             %>
-                <%// <a href="/Instagrim/Image/<%=profPic.getSUUID()%>"<%// ><img src="/Instagrim/Thumb/<%=profPic.getSUUID()%><%//"></a><br/> --!%>
+                <a href="/Instagrim/Image/<%=profPic.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=profPic.getSUUID()%>"></a><br/>
             <%
-                }
+            }
             %>
 
             <table>

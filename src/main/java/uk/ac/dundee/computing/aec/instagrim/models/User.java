@@ -135,6 +135,7 @@ public class User {
         for(Row row : rs){
             profilePicID = row.getUUID("profile_pic");
         }
+        System.out.println("profilePicID: " + profilePicID);
         return profilePicID;
     }
 }

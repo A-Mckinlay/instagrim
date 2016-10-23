@@ -65,28 +65,29 @@ public class Login extends HttpServlet {
             lg.setFirstName(us.getFirstName(username));
             lg.setLastName(us.getLastName(username));
             lg.setEmail(us.getEmail(username));
-            lg.setProfPicID(us.getProfilePicID(username));
+            java.util.UUID profilePicID = us.getProfilePicID(username);
+            if(profilePicID != null)
+            {   
+                lg.setProfPicID(profilePicID);
+            }
+       
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
             
             PicModel tm = new PicModel();
             tm.setCluster(cluster);
-            System.out.println("Profile Pic ID IS:" + us.getProfilePicID(username));
-            Pic profilePic = tm.getPic(0,us.getProfilePicID(username));
-            if(profilePic == null)
+            
+            if(profilePicID != null)
             {
-                System.out.println("PROFILE PIC IS NULL");
-            }
-
-            session.setAttribute("ProfilePic", profilePic);
-            
-            
+                Pic profilePic = tm.getPic(0,profilePicID);
+                profilePic.setUUID(profilePicID);
+                System.out.println("profilePic UUID at login = " + profilePic.getUUID());
+                session.setAttribute("ProfilePic", profilePic);
+            }          
             response.sendRedirect("/Instagrim/UserProfile");
 //            RequestDispatcher rd=request.getRequestDispatcher("/UserProfile");
 //            rd.forward(request,response);
-
-            
         }else{
             response.sendRedirect("/Instagrim/Login");
         }
