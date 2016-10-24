@@ -55,10 +55,13 @@ public class UserProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      //  LoggedIn lg = (LoggedIn) request.getSession().getAttribute("LoggedIn");
-      //  User us = (User) request.getSession().getAttribute(name);
-       // if(lg.getProfPicID() != )
-        
+        LoggedIn lg = (LoggedIn) request.getSession().getAttribute("LoggedIn");
+        User us = new User();
+        us.setCluster(cluster);
+        if(us.getProfilePicID(lg.getUsername()) != null)
+        {
+            lg.setProfPicID(us.getProfilePicID(lg.getUsername()));
+        }
         /*    
         java.util.UUID profilePicID = us.getProfilePicID(username);
         if(profilePicID != null)

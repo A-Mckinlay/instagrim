@@ -29,6 +29,17 @@ public class Pic {
     {
         return UUID;
     }
+    public boolean isUUIDNull()
+    {
+        if(UUID == null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public String getSUUID(){
         return UUID.toString();
     }
