@@ -70,8 +70,7 @@ public class Login extends HttpServlet {
             {   
                 lg.setProfPicID(profilePicID);
             }
-       
-            
+     
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
             

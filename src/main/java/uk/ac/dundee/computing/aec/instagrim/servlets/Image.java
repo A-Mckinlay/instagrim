@@ -159,7 +159,7 @@ public class Image extends HttpServlet {
             }
             if(profPic)
             {
-               
+                
                 RequestDispatcher rd = request.getRequestDispatcher("/UserProfile");
                 rd.forward(request, response);
             }

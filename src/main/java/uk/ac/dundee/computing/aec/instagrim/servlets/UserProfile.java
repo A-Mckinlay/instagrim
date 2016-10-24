@@ -58,10 +58,18 @@ public class UserProfile extends HttpServlet {
         LoggedIn lg = (LoggedIn) request.getSession().getAttribute("LoggedIn");
         User us = new User();
         us.setCluster(cluster);
-        if(us.getProfilePicID(lg.getUsername()) != null)
+        java.util.UUID profilePicID = us.getProfilePicID(lg.getUsername());
+        if(profilePicID != null)
         {
-            lg.setProfPicID(us.getProfilePicID(lg.getUsername()));
+            lg.setProfPicID(profilePicID);
         }
+        
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+        Pic profilePic = tm.getPic(0,profilePicID);
+        profilePic.setUUID(profilePicID);
+        System.out.println("profilePic UUID at login = " + profilePic.getUUID());
+        request.getSession().setAttribute("ProfilePic", profilePic);
         /*    
         java.util.UUID profilePicID = us.getProfilePicID(username);
         if(profilePicID != null)

@@ -34,6 +34,7 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
         
             request.getSession().removeAttribute("LoggedIn");
+            request.getSession().removeAttribute("ProfilePic");
             response.sendRedirect(request.getContextPath());
         }
     
