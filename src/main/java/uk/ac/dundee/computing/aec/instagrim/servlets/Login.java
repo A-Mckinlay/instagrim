@@ -74,7 +74,7 @@ public class Login extends HttpServlet {
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
             
-            PicModel tm = new PicModel();
+       /*     PicModel tm = new PicModel();
             tm.setCluster(cluster);
             
             if(profilePicID != null)
@@ -84,8 +84,8 @@ public class Login extends HttpServlet {
                 System.out.println("profilePic UUID at login = " + profilePic.getUUID());
                 session.setAttribute("ProfilePic", profilePic);
             }          
-            response.sendRedirect("/Instagrim/UserProfile");
-//            RequestDispatcher rd=request.getRequestDispatcher("/UserProfile");
+            */response.sendRedirect("/Instagrim/UserProfile");
+//           RequestDispatcher rd=request.getRequestDispatcher("/UserProfile");
 //            rd.forward(request,response);
         }else{
             response.sendRedirect("/Instagrim/Login");

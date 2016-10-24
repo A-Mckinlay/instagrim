@@ -46,7 +46,8 @@
             <h2>Profile Picture</h2>
             <%
             Pic profPic = (Pic) request.getSession().getAttribute("ProfilePic");
-            if(profPic.isUUIDNull()){
+            
+            if(lg.getProfPicID() == null){
             %>
                 <p>No Profile Picture Found</p>
             <%

@@ -17,6 +17,7 @@ public class Pic {
     private ByteBuffer bImage = null;
     private int length;
     private String type;
+    private boolean profPicExists=false;
     private java.util.UUID UUID=null;
     
     public void Pic() {
@@ -24,21 +25,15 @@ public class Pic {
     }
     public void setUUID(java.util.UUID UUID){
         this.UUID =UUID;
+        profPicExists = true;
     }
     public java.util.UUID getUUID()
     {
         return UUID;
     }
-    public boolean isUUIDNull()
+    public boolean getProfPicExists()
     {
-        if(UUID == null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return profPicExists;
     }
     public String getSUUID(){
         return UUID.toString();
