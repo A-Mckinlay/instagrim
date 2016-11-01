@@ -29,6 +29,7 @@
                             if (lg.getloggedin()) {
                     %>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li><a href="/Instagrim/UserProfile">Your Profile</li>
                 <li><form method="POST"  action="Logout"><input type="submit" value="Logout"></form></li>
                     <%}
                             }else{
@@ -42,7 +43,6 @@
         <footer>
             <ul>
                 <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Andy C</li>
             </ul>
         </footer>
     </body>

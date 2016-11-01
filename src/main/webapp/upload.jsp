@@ -18,7 +18,9 @@
         <nav>
             <ul>
                 <li class="nav"><a href="/Instagrim/Upload">Upload</a></li>
+                <li class="nav"><a href="/Instagrim/UserProfile">Your Profile</li>
                 <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <li class="nav"><form method="POST"  action="Logout"><input type="submit" value="Logout"></form></li>
             </ul>
         </nav>
  

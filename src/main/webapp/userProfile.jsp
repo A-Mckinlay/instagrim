@@ -21,8 +21,8 @@
         <nav>
             <ul>
                 <li class="nav"><a href="/Instagrim/Upload">Upload</a></li>
-                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                <li><form method="POST"  action="Logout"><input type="submit" s value="Logout"></form></li>
+                <li class="nav"><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li class="nav"><form method="POST"  action="Logout"><input type="submit" s value="Logout"></form></li>
             </ul>
         </nav>
                 
@@ -46,8 +46,7 @@
             <h2>Profile Picture</h2>
             <%
             Pic profPic = (Pic) request.getSession().getAttribute("ProfilePic");
-            
-            if(lg.getProfPicID() == null){
+            if(profPic == null){
             %>
                 <p>No Profile Picture Found</p>
             <%
@@ -73,5 +72,10 @@
                 <input type="submit" value="Press"> to upload the file!
             </form>
         </article>
+        <footer>
+            <ul>
+                <li class="footer"><a href="/Instagrim">Home</a></li>
+            </ul>
+        </footer>
     </body>
 </html>
